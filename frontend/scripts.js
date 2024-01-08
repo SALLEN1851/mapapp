@@ -6,6 +6,61 @@ const map = new mapboxgl.Map({
     zoom: 10 // Set the initial zoom level
 });
 
+import { polygonCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; // Adjust the path as needed
+import { nyStateCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; // Adjust the path as needed
+
+
+let marker;
+    const notification = document.getElementById('notification');
+
+    map.on('load', () => {
+      // Add your first polygon
+      map.addLayer({
+        id: 'my-polygon',
+        type: 'fill',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: polygonCoordinates,
+            },
+          },
+        },
+        layout: {},
+        paint: {
+          'fill-color': '#088',
+          'fill-opacity': 0.8,
+        },
+      });
+
+      // Add your second polygon
+      map.addLayer({
+        id: 'ny-state-polygon',
+        type: 'fill',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: [nyStateCoordinates],
+            },
+          },
+        },
+        layout: {},
+        paint: {
+          'fill-color': '#05B4DF',
+          'fill-opacity': 0.3,
+          'fill-outline-color': '#088', // Optional: Outline color
+        },
+      });
+    });
+
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submit-btn');
     if (submitBtn) {
@@ -71,6 +126,21 @@ const data = await response.json();
             .setLngLat(coordinates)
             .addTo(map);
 
+// Check if the marker is inside the polygon
+const isInsidePolygon = map.queryRenderedFeatures(coordinates, {
+    layers: ['ny-state-polygon'],
+}).length > 0;
+
+// Update the notification based on whether the marker is inside the polygon
+const notification = document.getElementById('notification');
+if (isInsidePolygon) {
+    notification.innerHTML = 'Service is available at this location.';
+    notification.style.display = 'block';
+} else {
+    notification.innerHTML = 'Service is not available at this location.';
+    notification.style.display = 'block'; // Or 'none' if you prefer to hide it
+}
+
      const formData = {
     streetAddress: streetAddress,
     city: city,
@@ -81,6 +151,7 @@ const data = await response.json();
         coordinates: [coordinates[0], coordinates[1]] // [longitude, latitude]
     }
 };
+
 
         const backendResponse = await fetch('http://localhost:3000/api/address', {
           method: 'POST',
