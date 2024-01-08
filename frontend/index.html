@@ -9,13 +9,10 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
-    
+
 </head>
 <body>
 
-  <div id='notification'>
-    <p>Marker is inside the polygon! <a href="https://www.google.com">Call to Action</a></p>
-  </div>
 
   <div id="map-container">
       <div id='map' style='width: 100%; height: 400px;'></div>
@@ -47,11 +44,34 @@
     </form>
 </div>
 </div>
-    <div id="notification" style="display: none;">Service is available at this location.</div>
+    <div id="notification" style="display: none;"></div>
+  <div id="pricing-info" style="display: none;">
+    <h2>Pricing Packages</h2>
+    <div class="packages">
+       <div class="package-card">
+    <h3>50mb Package</h3>
+    <p>$29.99/month</p>
+    <button class="cta-button">Sign Up</button>
+</div>
+<div class="package-card">
+    <h3>100mb Package</h3>
+    <p>$49.99/month</p>
+    <button class="cta-button">Sign Up</button>
+</div>
+<div class="package-card">
+    <h3>1gbps Package</h3>
+    <p>$99.99/month</p>
+    <button class="cta-button">Sign Up</button>
+</div>
+
+        </div>
+    </div>
+</div>
+
 
 
 
    <script type="module" src="scripts.js"></script>
-
+   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 </body>
 </html>

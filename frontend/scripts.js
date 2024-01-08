@@ -126,20 +126,56 @@ const data = await response.json();
             .setLngLat(coordinates)
             .addTo(map);
 
-// Check if the marker is inside the polygon
-const isInsidePolygon = map.queryRenderedFeatures(coordinates, {
-    layers: ['ny-state-polygon'],
-}).length > 0;
+// Assuming 'coordinates' is [longitude, latitude] of the marker
+const point = turf.point(coordinates);
+
+const polygon = turf.polygon([nyStateCoordinates]);
+
+const isInsidePolygon = turf.booleanPointInPolygon(point, polygon);
+
+const pricingInfoDiv = document.getElementById('pricing-info');
+
+if (isInsidePolygon) {
+    // If the condition is met, show the pricing information
+    pricingInfoDiv.style.display = 'block';
+} else {
+    // Otherwise, keep it hidden
+    pricingInfoDiv.style.display = 'none';
+}
 
 // Update the notification based on whether the marker is inside the polygon
 const notification = document.getElementById('notification');
 if (isInsidePolygon) {
-    notification.innerHTML = 'Service is available at this location.';
+    notification.innerHTML = `Service is available at<br> <strong>${fullAddress}</strong>.`;
     notification.style.display = 'block';
 } else {
-    notification.innerHTML = 'Service is not available at this location.';
-    notification.style.display = 'block'; // Or 'none' if you prefer to hide it
+    notification.innerHTML = `Service is not available at<br> <strong>${fullAddress}</strong>.`;
+    notification.style.display = 'block';
 }
+
+// Assuming this part determines if the address is inside the polygon
+if (isInsidePolygon) {
+    const pricingInfoDiv = document.getElementById('pricing-info');
+    const packagesList = document.getElementById('packages-list');
+
+    
+
+
+    // Define your packages
+    const packages = [
+        { name: '50mb Package', price: '$29.99/month' },
+        { name: '100mb Package', price: '$49.99/month' },
+        { name: '1gbps Package', price: '$99.99/month' }
+    ];
+
+
+    // Display the pricing information
+    pricingInfoDiv.style.display = 'block';
+} else {
+    // Hide the pricing information if not in polygon
+    document.getElementById('pricing-info').style.display = 'none';
+}
+
 
      const formData = {
     streetAddress: streetAddress,

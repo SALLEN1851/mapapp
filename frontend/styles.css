@@ -16,7 +16,7 @@ body {
     top: -50px; /* Adjust as needed to push the form above the map */
     background: rgba(255, 255, 255, 0.9); /* White background with opacity */
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
     z-index: 1; /* Ensures the form appears above the map */
     
@@ -80,13 +80,17 @@ button:hover {
 
 
 #notification {
-      position: absolute;
-      display: none;
-      padding: 10px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      z-index: 1;
-    }
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    display: none; /* Initially hidden */
+    background-color: #f8f8f8;
+    line-height: 2;
+    font-size: 1.2rem;
+}
+
 
     #serviceMessage {
     margin-top: 20px;
@@ -129,3 +133,67 @@ button:hover {
     width: 400px; /* Adjust as needed */
     /* Add any additional styling for the form */
 }
+
+
+/* Pricing Packages Wrapper */
+
+#pricing-info {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #00415A;
+}
+.packages {
+    display: flex;
+    justify-content: space-between; /* This will space out the cards equally */
+    margin: 0 auto;
+    max-width: 960px; /* Adjust the max-width as needed */
+}
+
+.package-card {
+    flex: 1; /* This makes each card take up equal width */
+    margin: 0 10px; /* Add some space between the cards */
+    padding: 20px;
+    border: 1px solid #ddd; /* A light border for the card */
+    border-radius: 4px; /* Optional: rounds the corners */
+    text-align: center; /* Center the text inside the card */
+}
+
+/* Additional styling for the package titles and prices */
+.package-card h3 {
+    margin-top: 0;
+    color: #333; /* Dark text color for the title */
+}
+
+.package-card p {
+    color: #666; /* Lighter text color for the price */
+}
+
+@media (max-width: 600px) {
+    .packages {
+        flex-direction: column;
+    }
+    .package-card {
+        margin-bottom: 20px; /* Add space between stacked cards */
+    }
+}
+
+.cta-button {
+    background-color: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* End Pricing Packages Wrapper */
