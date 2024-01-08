@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FsbGVuMTA2IiwiYSI6ImNscXlham03ZzBubGcya3BveXJveWRtaTQifQ.l4TqDA9Ht87uHzHR-e-Vmg'; // Replace with your Mapbox access token
 const map = new mapboxgl.Map({
     container: 'map', // The HTML element ID where the map will be inserted
-    style: 'mapbox://styles/mapbox/streets-v11', // Replace with your desired map style
+    style: 'mapbox://styles/mapbox/light-v10', // Replace with your desired map style
     center: [-73.981934, 40.753019], // Set the initial position [longitude, latitude]
     zoom: 14 // Set the initial zoom level
 });
@@ -65,7 +65,9 @@ const data = await response.json();
 
 
         // Place a marker at the address location
-        new mapboxgl.Marker()
+        new mapboxgl.Marker({
+    color: "#05B4DF" // Hex code for yellow
+})
             .setLngLat(coordinates)
             .addTo(map);
 
