@@ -2,8 +2,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2FsbGVuMTA2IiwiYSI6ImNscXlham03ZzBubGcya3Bve
 const map = new mapboxgl.Map({
     container: 'map', // The HTML element ID where the map will be inserted
     style: 'mapbox://styles/mapbox/light-v10', // Replace with your desired map style
-    center: [-73.981934, 40.753019], // Set the initial position [longitude, latitude]
-    zoom: 14 // Set the initial zoom level
+    center: [-85.2913559, 39.8089351], // Set the initial position [longitude, latitude]
+    zoom: 10 // Set the initial zoom level
 });
 
     document.addEventListener('DOMContentLoaded', function() {
