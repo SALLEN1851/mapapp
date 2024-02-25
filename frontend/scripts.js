@@ -7,7 +7,12 @@ const map = new mapboxgl.Map({
 });
 
 import { polygonCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; // Adjust the path as needed
-import { nyStateCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; // Adjust the path as needed
+import { SunSetAreaCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; // Adjust the path as needed
+import { MeekRdCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js';
+import { WhiteWaterCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js';
+import { LeadLineCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js';
+import { RDOFCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js';
+import { MattieHarrisCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; 
 
 
 let marker;
@@ -24,18 +29,65 @@ let marker;
             type: 'Feature',
             geometry: {
               type: 'Polygon',
-              coordinates: polygonCoordinates,
+              coordinates: [SunSetAreaCoordinates],
             },
           },
         },
         layout: {},
         paint: {
-          'fill-color': '#088',
-          'fill-opacity': 0.8,
+          'fill-color': '#05B4DF',
+          'fill-opacity': 0.3,
+          'fill-outline-color': '#088',
         },
       });
 
       // Add your second polygon
+      map.addLayer({
+        id: 'lead-line-polygon',
+        type: 'fill',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: [WhiteWaterCoordinates],
+            },
+          },
+        },
+        layout: {},
+        paint: {
+          'fill-color': '#05B4DF',
+          'fill-opacity': 0.3,
+          'fill-outline-color': '#088', // Optional: Outline color
+        },
+      });
+    
+
+       // Add your third polygon
+      map.addLayer({
+        id: 'nc-polygon',
+        type: 'fill',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: [MeekRdCoordinates],
+            },
+          },
+        },
+        layout: {},
+        paint: {
+          'fill-color': '#05B4DF',
+          'fill-opacity': 0.3,
+          'fill-outline-color': '#088', // Optional: Outline color
+        },
+      });
+ 
+
+         // Add your fourth polygon
       map.addLayer({
         id: 'ny-state-polygon',
         type: 'fill',
@@ -45,7 +97,52 @@ let marker;
             type: 'Feature',
             geometry: {
               type: 'Polygon',
-              coordinates: [nyStateCoordinates],
+              coordinates: [LeadLineCoordinates],
+            },
+          },
+        },
+        layout: {},
+        paint: {
+          'fill-color': '#371F76',
+          'fill-opacity': 0.3,
+          'fill-outline-color': '#088', // Optional: Outline color
+        },
+      });
+   
+
+           // Add your fifth polygon
+      map.addLayer({
+        id: 'rdof-polygon',
+        type: 'fill',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: [RDOFCoordinates],
+            },
+          },
+        },
+        layout: {},
+        paint: {
+          'fill-color': '#DEA731',
+          'fill-opacity': 0.3,
+          'fill-outline-color': '#088', // Optional: Outline color
+        },
+      });
+
+               // Add your sixth polygon
+      map.addLayer({
+        id: 'mattieHarrisPolygon',
+        type: 'fill',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: [MattieHarrisCoordinates],
             },
           },
         },
@@ -129,9 +226,26 @@ const data = await response.json();
 // Assuming 'coordinates' is [longitude, latitude] of the marker
 const point = turf.point(coordinates);
 
-const polygon = turf.polygon([nyStateCoordinates]);
+// const polygon = turf.polygon([MeekRdCoordinates], [WhiteWaterCoordinates], [SunSetAreaCoordinates]);
 
-const isInsidePolygon = turf.booleanPointInPolygon(point, polygon);
+// Create separate polygons for each set of coordinates
+const polygonMeekRd = turf.polygon([MeekRdCoordinates]);
+const polygonWhiteWater = turf.polygon([WhiteWaterCoordinates]);
+const polygonSunSetArea = turf.polygon([SunSetAreaCoordinates]);
+const polygonLeadLine = turf.polygon([LeadLineCoordinates]);
+const polygonRDOF = turf.polygon([RDOFCoordinates]);
+const mattieHarrisPolygon = turf.polygon([MattieHarrisCoordinates]);
+
+// Check if the point is inside any of the polygons
+const isInsideMeekRd = turf.booleanPointInPolygon(point, polygonMeekRd);
+const isInsideWhiteWater = turf.booleanPointInPolygon(point, polygonWhiteWater);
+const isInsideSunSetArea = turf.booleanPointInPolygon(point, polygonSunSetArea);
+const isInsideLeadLine = turf.booleanPointInPolygon(point, polygonLeadLine);
+const isInsideRDOF = turf.booleanPointInPolygon(point, polygonRDOF);
+const isInsideMattieHarris = turf.booleanPointInPolygon(point, mattieHarrisPolygon);
+const isInsidePolygon = isInsideMeekRd || isInsideWhiteWater || isInsideSunSetArea || isInsideLeadLine || isInsideRDOF || isInsideMattieHarris;
+
+// const isInsidePolygon = turf.booleanPointInPolygon(point, polygon);
 
 const pricingInfoDiv = document.getElementById('pricing-info');
 
@@ -146,7 +260,7 @@ if (isInsidePolygon) {
 // Update the notification based on whether the marker is inside the polygon
 const notification = document.getElementById('notification');
 if (isInsidePolygon) {
-    notification.innerHTML = `Service is available at<br> <strong>${fullAddress}</strong>.`;
+    notification.innerHTML = `Great news! We offer service at <br> <strong>${fullAddress}</strong> <br> Check out our plans below`;
     notification.style.display = 'block';
 } else {
     notification.innerHTML = `Service is not available at<br> <strong>${fullAddress}</strong>.`;
@@ -156,18 +270,7 @@ if (isInsidePolygon) {
 // Assuming this part determines if the address is inside the polygon
 if (isInsidePolygon) {
     const pricingInfoDiv = document.getElementById('pricing-info');
-    const packagesList = document.getElementById('packages-list');
-
-    
-
-
-    // Define your packages
-    const packages = [
-        { name: '50mb Package', price: '$29.99/month' },
-        { name: '100mb Package', price: '$49.99/month' },
-        { name: '1gbps Package', price: '$99.99/month' }
-    ];
-
+  
 
     // Display the pricing information
     pricingInfoDiv.style.display = 'block';
