@@ -7677,6 +7677,107 @@ section.three-column-table .col-table-link {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
 
+/* Zone Legend */
 
+.zone-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.zone-col {
+  display: flex; /* Enable Flexbox within each column */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  flex: 25%; /* Each column takes up 25% of the container width on desktop */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 10px; /* Add some padding */
+  height: 200px; /* Set a fixed height for demonstration purposes */
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative; /* Needed for positioning the arrow */
+}
+
+.zone-interest {
+  background-color: #371F76;
+  color: #fff;
+}
+
+.zone-pre {
+  background-color: #DEA731;
+  color: #fff;
+}
+
+.zone-construction {
+  background-color: #8b0000;
+  color: #fff;
+}
+
+.zone-active {
+  background-color: #05B4DF;
+  color: #fff;
+}
+
+.zone-interest > h2 {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFF;
+}
+
+.zone-pre > h2 {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFF;
+}
+
+.zone-construction > h2 {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFF;
+}
+
+.zone-active > h2 {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFF;
+}
+
+.zone-num {
+    display: flex;
+    flex-wrap: wrap;
+    color: #FFF;
+    font-size: 2.25rem;
+}
+
+.arrow {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 20px solid #FFF; /* Adjust the color as needed */
+  position: absolute;
+  right: -13px; /* Half of the arrow's width to make it overlap between columns */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Place the arrow above the columns */
+}
+
+/* Media query for devices with a width of up to 600px */
+@media (max-width: 600px) {
+  .zone-col {
+    flex: 100%; /* Each column takes up 100% of the container width on mobile */
+  }
+
+    .arrow {
+        display: none; /* Hide the arrow on mobile */
+    }
+}
