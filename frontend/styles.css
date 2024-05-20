@@ -4,7 +4,10 @@ body {
     flex-direction: column;
     justify-content: center;
     margin: 0;
+<<<<<<< HEAD
     color: #646464;
+=======
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
 }
 
 
@@ -42,10 +45,17 @@ a.mapboxgl-ctrl-logo {
 }
 
 form {
+<<<<<<< HEAD
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 20px;
     margin: 0 auto;
+=======
+    width: 60%;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 20px;
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
 }
 
 
@@ -65,6 +75,7 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
 input[type="email" i] {
   padding: 8px;
   border: 1px solid #ddd;
@@ -77,6 +88,8 @@ input[type="tel" i] {
   border-radius: 4px;
 }
 
+=======
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
 button {
     width: 100%;
     padding: 10px;
@@ -91,6 +104,7 @@ button:hover {
     background-color: darkblue;
 }
 
+<<<<<<< HEAD
 .button-link {
     display: inline-block;
     padding: 10px 20px;
@@ -126,6 +140,19 @@ button:hover {
     margin-top: -50px;
     box-shadow: 0px 8px 10px 0px rgba(207, 207, 207, 0.5);
     z-index: 1;
+=======
+
+#notification {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    display: none; /* Initially hidden */
+    background-color: #f8f8f8;
+    line-height: 2;
+    font-size: 1.2rem;
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
 }
 
 
@@ -151,7 +178,10 @@ button:hover {
 /* Style adjustments for label and input if needed */
 .form-group label {
     display: block;
+<<<<<<< HEAD
     text-align: left;
+=======
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
     /* Add label styles here */
 }
 
@@ -576,11 +606,14 @@ section.icon-section {
   }
 }
 @media (min-width: 768px) {
+<<<<<<< HEAD
   
   form {
     max-width: 60%;
   }
   
+=======
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
   .navbar-expand-md {
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -7161,6 +7194,7 @@ section.image-cta h2.section-heading {
   color: #fff;
 }
 
+<<<<<<< HEAD
 .section-heading {
    margin-bottom: 1rem;
     font-family: "Open Sans", sans-serif;
@@ -7169,6 +7203,8 @@ section.image-cta h2.section-heading {
     color: #00415A; }
 
 
+=======
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
 /*! section.two-column-table */
 .two-col-left,
 .two-col-right {
@@ -7347,10 +7383,13 @@ section.form .form-right iframe #form1 {
   font-size: 1rem !important;
 }
 
+<<<<<<< HEAD
 #form-link {
   color: #05B4DF;
 }
 
+=======
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
 /*! FORMS */
 /*! GRAVITY FORMS */
 .gform_wrapper {
@@ -7467,7 +7506,11 @@ section.form .form-right iframe #form1 {
   }
 
   #main-nav.navbar-collapse {
+<<<<<<< HEAD
     /* position: absolute;
+=======
+    position: absolute;
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
     top: 0;
     left: 0;
     right: 0;
@@ -7475,8 +7518,12 @@ section.form .form-right iframe #form1 {
     height: 100vh;
     background: rgba(0, 65, 90, 0.95);
     padding: 60px;
+<<<<<<< HEAD
     padding-top: 0; */
     display: none;
+=======
+    padding-top: 0;
+>>>>>>> e18af714289b6bd5f80709262804ac227e79a7a6
   }
 
   #eyebrow-nav {

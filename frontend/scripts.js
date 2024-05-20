@@ -6,6 +6,7 @@ const map = new mapboxgl.Map({
     zoom: 10 // Set the initial zoom level
 });
 
+// test
 
 
 import { polygonCoordinates } from 'http://127.0.0.1:5500/backend/coordinates/polygon.js'; // Adjust the path as needed
